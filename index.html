@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Get number of courses from user with default value of 0
+        let numOfCourses = Number(prompt("How many courses did you finish?", "0"));
+
+        // Validate input
+        if (isNaN(numOfCourses)) {
+            document.write("<p>Invalid Input!</p>");
+        } else {
+            // Create empty array for course marks
+            let courseMarks = [];
+            let total = 0;
+
+            // Using while loop to get course marks 
+            let counter = 1;
+            while (counter <= numOfCourses) {
+                courseMarks.push(Number(prompt(`Enter your marks for course ${counter}`)));
+                counter++;
+            }
+
+            // Calculate total while displaying the marks
+            document.write("<p>Your course marks are:</p>");
+            for (let i = 0; i < courseMarks.length; i++) {
+                document.write(`<p>Course ${i + 1}: ${courseMarks[i]}</p>`);
+                total += courseMarks[i];
+            }
+
+            // Calculate average
+            let average = total / numOfCourses;
+            let roundedAverage = Math.round(average * 100) / 100;
+
+            // Determine grade and display result
+            if (courseMarks.some(mark => mark < 0 || mark > 100)) {
+                document.write("<p>Sorry, all the marks have to be from minimum 0 to maximum 100!</p>");
+            } else if (average >= 90 && average <= 100) {
+                document.write(`<p>Your final average is ${roundedAverage}. Your grade is A+</p>`);
+            } else if (average >= 80 && average <= 89) {
+                document.write(`<p>Your final average is ${roundedAverage}. Your grade is B</p>`);
+            } else if (average >= 70 && average <= 79) {
+                document.write(`<p>Your final average is ${roundedAverage}. Your grade is C</p>`);
+            } else if (average >= 60 && average <= 69) {
+                document.write(`<p>Your final average is ${roundedAverage}. Your grade is D</p>`);
+            } else if (average < 60) {
+                document.write(`<p>Your final average is ${roundedAverage}. Your grade is F</p>`);
+            }
+        }
+    </script>
+</body>
+</html>
